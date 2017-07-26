@@ -1,0 +1,15 @@
+player rolls the dice
+gets res1 and res2;
+
+#erases option list content
+#push the options for (res1) to option list
+#push the options for (res2) to option list
+#selects an option(e.g accoarding to res1)
+#apply player choice
+#game ruler asks player for special actions if neccessary
+
+//erases option list content
+//[if not cancled, push the options for (res2) to option list]
+//selects an option
+//apply player choice
+//game ruler asks player for special actions if neccessary
