@@ -9,6 +9,7 @@ class GameInitializer
 {
 	friend class UI;
 	friend class ConsoleUI;
+    friend class GraphicalUI;
 	
 	private:
 		std::vector<Treasure *> treasures;
@@ -26,7 +27,6 @@ class GameInitializer
 		void composeGame(std::string mapPath, int realPlayerCount, int networkPlayerCount, int robotPlayerCount);
 		void locatePlayers();
 		GameInitializer(std::string mapPath, int realPlayerCount, int networkPlayerCount, int robotPlayerCount, UI *caller);
-		
 		
 	public:
 		

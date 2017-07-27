@@ -9,6 +9,7 @@
 #include "../headers/GameBoard.h"
 #include "../headers/GameRuler.h"
 #include "../headers/GameStatistics.h"
+#include "../headers/BoardToGUI.h"
 
 class Game
 {
@@ -17,6 +18,7 @@ class Game
 		GameRuler *gameRuler;
 		GameStatistics *gameStat;
 		UI *gameUI;
+        BoardToGUI translator;
 		
 		Game(GameBoard *gameBoard, GameRuler *gameRuler, GameStatistics *gameStat, UI *gameUI);
 		

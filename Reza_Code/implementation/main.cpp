@@ -1,9 +1,17 @@
+#include <QApplication>
 #include <iostream>
 #include "headers/ConsoleUI.h"
+#include "headers/GraphicalUI.h"
+#include "GameScreen.h"
 
 int main(int argc, char** argv)
 {
-	ConsoleUI gameUI;
-	gameUI.initiateGame();
-	return 0;
+//	ConsoleUI gameUI;
+//	gameUI.initiateGame();
+    QApplication app(argc, argv);
+    
+    GraphicalUI gameUI;
+    gameUI.initiateGame();
+    
+	return app.exec();
 }

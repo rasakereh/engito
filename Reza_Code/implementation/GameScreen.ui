@@ -59,6 +59,23 @@
           </widget>
          </item>
          <item>
+          <widget class="QLabel" name="lblCurrentTreasure">
+           <property name="text">
+            <string>Current Treasure:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="lblCurrentTreasureName">
+           <property name="text">
+            <string>---------</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item>
           <widget class="QLabel" name="lblCurrentPlayer">
            <property name="text">
             <string>Current Player:</string>

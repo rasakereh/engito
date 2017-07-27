@@ -50,7 +50,9 @@ SOURCES += \
     src/TreasureCell.cpp \
     src/UI.cpp \
     mainwindow.cpp \
-    GameScreen.cpp
+    GameScreen.cpp \
+    src/GraphicalUI.cpp \
+    src/BoardToGUI.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -78,8 +80,13 @@ HEADERS += \
     headers/Treasure.h \
     headers/TreasureCell.h \
     headers/UI.h \
-    GameScreen.h
+    GameScreen.h \
+    headers/GraphicalUI.h \
+    headers/BoardToGUI.h
 
 FORMS += \
         mainwindow.ui \
     GameScreen.ui
+
+RESOURCES += \
+    icons.qrc

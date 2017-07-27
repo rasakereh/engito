@@ -12,4 +12,5 @@ Game::Game(GameBoard *gameBoard, GameRuler *gameRuler, GameStatistics *gameStat,
 	this -> gameStat -> ownerGame = this;
 	std::for_each(this -> gameStat -> players.begin(), this -> gameStat -> players.end(), [&](Player *player){player -> activeGame = this;});
 	this -> gameUI = gameUI;
+    translator.translateBoardToUI(this -> gameUI, this -> gameBoard);
 }
