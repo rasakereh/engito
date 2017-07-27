@@ -49,7 +49,8 @@ SOURCES += \
     src/Treasure.cpp \
     src/TreasureCell.cpp \
     src/UI.cpp \
-    starterWindow.cpp
+    mainwindow.cpp \
+    GameScreen.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -76,7 +77,9 @@ HEADERS += \
     headers/TransportCell.h \
     headers/Treasure.h \
     headers/TreasureCell.h \
-    headers/UI.h
+    headers/UI.h \
+    GameScreen.h
 
 FORMS += \
-        mainwindow.ui
+        mainwindow.ui \
+    GameScreen.ui
