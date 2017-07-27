@@ -11,7 +11,7 @@ int GraphicalUI::initiateGame()
     //Loading a map should be implemented here
     
     mainWindow = new MainWindow(playerNames);
-    mainWindow -> exec();
+    mainWindow -> setWindowModality(Qt::ApplicationModal);
 	playerCount = playerNames.size();
 	 
     gameScreen = new GameScreen;

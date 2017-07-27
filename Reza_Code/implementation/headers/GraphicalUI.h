@@ -1,3 +1,5 @@
+#include "misc/SafeInclusion.cpp"
+
 #ifndef GRAPHICALUI_H
 #define GRAPHICALUI_H
 

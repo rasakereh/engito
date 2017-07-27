@@ -1,3 +1,5 @@
+#include "misc/SafeInclusion.cpp"
+
 #ifndef BOARDTOGUI_H
 #define BOARDTOGUI_H
 

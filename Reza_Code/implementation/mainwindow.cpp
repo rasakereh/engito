@@ -32,12 +32,12 @@ void MainWindow::startGame(std::vector<std::string> &playerNames)
 {
      for(int i = 0; i < this -> ui -> spinPlayerCount -> value(); i++)
     {
-        this -> playerNames.push_back(this -> txtPlayers[i] -> text());
+        this -> playerNames.push_back(this -> txtPlayers[i] -> text().toStdString());
     }
      getPlayerNames(playerNames);
 }
 
-void getPlayerNames(std::vector<std::string> &playerNames)
+void MainWindow::getPlayerNames(std::vector<std::string> &playerNames)
 {
     playerNames = this -> playerNames;
 }

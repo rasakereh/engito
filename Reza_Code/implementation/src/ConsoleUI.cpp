@@ -63,7 +63,7 @@ int ConsoleUI::askForUserChoice(UI::OptionList optionList)
 	return (playerInput - 1);
 }
 
-void ConsoleUI::updatePlayerPositions(std::map<std::string, int> playersPositionData)
+void ConsoleUI::updatePlayerPositions(std::map<std::string, int> &playersPositionData)
 {
 	std::cout << "Current Positions:";
 	for(auto it = playersPositionData.begin(); it != playersPositionData.end(); it++)

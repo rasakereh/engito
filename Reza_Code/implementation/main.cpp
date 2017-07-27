@@ -8,6 +8,8 @@ int main(int argc, char** argv)
 {
 //	ConsoleUI gameUI;
 //	gameUI.initiateGame();
+//  #define __CONSOLE__
+    #define __GRAPHIC__
     QApplication app(argc, argv);
     
     GraphicalUI gameUI;

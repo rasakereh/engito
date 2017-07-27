@@ -13,7 +13,7 @@ class UI
 	friend class GameRuler;
 	friend class GameStatistics;
 	private:
-		virtual void updatePlayerPositions(std::map<std::string, int>) = 0;
+		virtual void updatePlayerPositions(std::map<std::string, int> &) = 0;
 		
 	public:
 		struct OptionList

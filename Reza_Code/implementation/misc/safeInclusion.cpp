@@ -37,6 +37,9 @@ class UI;
 class Game;
 class GameInitializer;
 class MapLoader;
+class GameScreen;
+class GraphicalUI;
+class BoardToGUI;
 
 #include "../headers/Game.h"
 

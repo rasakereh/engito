@@ -8,7 +8,7 @@ GameScreen::GameScreen(QWidget *parent) :
     ui->setupUi(this);
 }
 
-GameScreen::announceDice(int diceValue1, int diceValue2)
+void GameScreen::announceDice(int diceValue1, int diceValue2)
 {
     this -> ui -> lblDice1 -> setPixmap(QPixmap(QString(":/icon/Dice/%1.png").arg(diceValue1)));
     this -> ui -> lblDice1 -> repaint();
@@ -48,6 +48,11 @@ void GameScreen::declareReset(std::string playerName)
 }
 
 void GameScreen::playerWonRound(std::string playerName, int treasureLocation, char treasureName)
+{
+    
+}
+
+bool GameScreen::diceRollPermission()
 {
     
 }
