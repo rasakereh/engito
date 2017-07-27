@@ -24,45 +24,45 @@ int GraphicalUI::initiateGame()
 
 bool GraphicalUI::diceRollPermission()
 {
-    
+    return this -> gameScreen -> diceRollPermission();
 }
 
 void GraphicalUI::announceDice(int diceValue1, int diceValue2, std::string playerName)
 {
-    
+    return this -> gameScreen -> announceDice(diceValue1, diceValue2);
 }
 
 void GraphicalUI::expressNewRound(int roundCount, char treasureName)
 {
-    
+    return this -> gameScreen -> expressNewRound(roundCount, treasureName);
 }
 
 void GraphicalUI::expressTreasureChange(int roundCount, char treasureName)
 {
-    
+    return this -> gameScreen -> expressTreasureChange(roundCount, treasureName);
 }
 
-void GraphicalUI::updatePlayerPositions(std::map<std::string, int>)
+void GraphicalUI::updatePlayerPositions(std::map<std::string, int> &playersPosition)
 {
-    
+    return this -> gameScreen -> updatePlayerPositions(playersPosition);
 }
 
 void GraphicalUI::declareReset(std::string playerName)
 {
-    
+    return this -> gameScreen -> declareReset(playerName);
 }
 
 void GraphicalUI::playerWonRound(std::string playerName, int treasureLocation, char treasureName)
 {
-    
+    return this -> gameScreen -> playerWonRound(playerName, treasureLocation, treasureName);
 }
 
 void GraphicalUI::showTreasureTo(std::string playerName, char treasureName, int cellNumber)
 {
-    
+    return this -> gameScreen -> showTreasureTo(playerName, treasureName, cellNumber);
 }
 
 int GraphicalUI::askForUserChoice(UI::OptionList optionList)
 {
-    
+    return this -> gameScreen -> askForUserChoice(optionList);
 }
