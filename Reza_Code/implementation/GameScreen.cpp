@@ -3,7 +3,8 @@
 
 GameScreen::GameScreen(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::GameScreen)
+    ui(new Ui::GameScreen),
+    popupWindow(new QWidget(this))
 {
     ui->setupUi(this);
 }
@@ -37,7 +38,7 @@ void GameScreen::showPopupMessage(QString message, int intervalMiliSec)
     QTimer::singleShot(intervalMiliSec, this, [&](){this -> popupWindow -> close();});
 }
 
-void GameScreen::updatePlayerPositions(std::map<std::string, int> playersPosition)
+void GameScreen::updatePlayerPositions(std::map<std::string, int> &playersPosition)
 {
     
 }
