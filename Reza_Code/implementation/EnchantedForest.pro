@@ -55,7 +55,6 @@ SOURCES += \
     src/BoardToGUI.cpp
 
 HEADERS += \
-        mainwindow.h \
     headers/BoardCell.h \
     headers/CellDecision.h \
     headers/ConsoleUI.h \
@@ -82,7 +81,8 @@ HEADERS += \
     headers/UI.h \
     GameScreen.h \
     headers/GraphicalUI.h \
-    headers/BoardToGUI.h
+    headers/BoardToGUI.h \
+    MainWindow.h
 
 FORMS += \
         mainwindow.ui \
@@ -90,3 +90,4 @@ FORMS += \
 
 RESOURCES += \
     icons.qrc
+#

@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 
+#include <QDebug>
 #include <QMainWindow>
 #include <QLabel>
 #include <QLineEdit>

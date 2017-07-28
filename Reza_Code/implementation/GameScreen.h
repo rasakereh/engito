@@ -10,15 +10,13 @@ namespace Ui {
 class GameScreen;
 }
 
-class GraphicalUI;
+//class GraphicalUI;
 
 class GameScreen : public QMainWindow
-{
-    Q_OBJECT
-    
-    friend class GraphicalUI;
-    
+{   
+    //Q_OBJECT
 public:
+    
     explicit GameScreen(QWidget *parent = 0);
     bool diceRollPermission();
     void announceDice(int diceValue1, int diceValue2);
@@ -30,8 +28,7 @@ public:
     void showTreasureTo(std::string playerName, char treasureName, int cellNumber);
     int askForUserChoice(UI::OptionList optionList);
     
-    
-    ~GameScreen();
+    virtual ~GameScreen();
     
 private:
     Ui::GameScreen *ui;

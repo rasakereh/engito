@@ -7,6 +7,7 @@ GameScreen::GameScreen(QWidget *parent) :
     popupWindow(new QWidget(this))
 {
     ui->setupUi(this);
+    this -> setWindowTitle(tr("Enchanted Forest"));
 }
 
 void GameScreen::announceDice(int diceValue1, int diceValue2)

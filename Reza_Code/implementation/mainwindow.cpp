@@ -1,4 +1,4 @@
-#include "mainwindow.h"
+#include "MainWindow.h"
 #include "ui_mainwindow.h"
 
 MainWindow::MainWindow(std::vector<std::string> &playerNames, QWidget *parent) :
@@ -34,7 +34,8 @@ void MainWindow::startGame(std::vector<std::string> &playerNames)
     {
         this -> playerNames.push_back(this -> txtPlayers[i] -> text().toStdString());
     }
-     getPlayerNames(playerNames);
+    getPlayerNames(playerNames);
+    this -> close();
 }
 
 void MainWindow::getPlayerNames(std::vector<std::string> &playerNames)

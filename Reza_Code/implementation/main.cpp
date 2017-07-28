@@ -1,3 +1,5 @@
+#include <QDebug>
+
 #include <QApplication>
 #include <iostream>
 #include "headers/ConsoleUI.h"

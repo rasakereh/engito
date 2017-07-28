@@ -1,4 +1,6 @@
 #include "../headers/GraphicalUI.h"
+#include <QDebug>
+#include <QDialog>
 
 int GraphicalUI::initiateGame()
 {
@@ -9,10 +11,14 @@ int GraphicalUI::initiateGame()
     std::vector<std::string> playerNames;
     
     //Loading a map should be implemented here
-    
-    mainWindow = new MainWindow(playerNames);
-    mainWindow -> setWindowModality(Qt::ApplicationModal);
+    QDialog dialog;
+    mainWindow = new MainWindow(playerNames, &dialog);
+    mainWindow -> setAttribute(Qt::WA_DeleteOnClose);
+    QObject::connect(mainWindow, &QMainWindow::destroyed, &dialog, &QDialog::accept);
+    mainWindow -> show();
+    dialog.exec();
 	playerCount = playerNames.size();
+    qDebug() << playerCount;
 	 
     gameScreen = new GameScreen;
     gameScreen -> show();

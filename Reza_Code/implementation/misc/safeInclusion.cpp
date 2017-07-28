@@ -7,6 +7,8 @@
 #include <typeinfo>
 #include <vector>
 
+#include <QDebug>
+
 template<typename _Desired, typename _Queried>
 bool isInstanceOf(const _Queried &q)
 {
