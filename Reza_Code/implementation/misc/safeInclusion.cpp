@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <functional>
 #include <string>
+#include <thread>
 #include <typeinfo>
 #include <utility>
 #include <vector>
@@ -17,6 +18,7 @@ bool isInstanceOf(const _Queried &q)
 }
 
 class BoardCell;
+class CellContainer;
 class Dice;
 class DecisionTranslator;
 class Treasure;
@@ -43,6 +45,7 @@ class MapLoader;
 class GameScreen;
 class GraphicalUI;
 class BoardToGUI;
+class PlayerContainer;
 
 #include "../headers/Game.h"
 

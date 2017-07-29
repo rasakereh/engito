@@ -9,8 +9,8 @@
 #include <QLabel>
 #include "MapLoader.h"
 
-#define WIDTHCELL 32
-#define HEIGHTCELL 32
+#define WIDTHCELL 28
+#define HEIGHTCELL 28
 
 //class MapDraft;
 

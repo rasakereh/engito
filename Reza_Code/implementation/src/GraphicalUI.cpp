@@ -1,7 +1,10 @@
+#include <chrono>
+
 #include "../headers/GraphicalUI.h"
 #include <QDebug>
 #include <QDialog>
 #include <QInputDialog>
+#include <QMessageBox>
 
 int GraphicalUI::initiateGame()
 {
@@ -73,5 +76,12 @@ void GraphicalUI::showTreasureTo(std::string playerName, char treasureName, int 
 
 int GraphicalUI::askForUserChoice(UI::OptionList optionList)
 {
-    return this -> gameScreen -> askForUserChoice(optionList);
+    bool doneState = false;
+    int returnValue;
+    thread getReturnValue(this -> gameScreen -> askForUserChoice, optionList, returnValue, doneState);
+    while(doneState == false)
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    getReturnValue.join();
+    QMessageBox::information(nullptr, "result", QString("%1").arg(returnValue));
+    return returnValue;
 }

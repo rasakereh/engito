@@ -26,7 +26,7 @@ public:
     void declareReset(std::string playerName);
     void playerWonRound(std::string playerName, int treasureLocation, char treasureName);
     void showTreasureTo(std::string playerName, char treasureName, int cellNumber);
-    int askForUserChoice(UI::OptionList optionList);
+    int askForUserChoice(UI::OptionList optionList, int &answer, bool &readyState);
     std::pair<int, int> askUserDice();
     
     virtual ~GameScreen();
