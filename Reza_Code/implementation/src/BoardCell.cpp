@@ -16,7 +16,7 @@ void BoardCell::setPosition(int xPosition, int yPosition)
     this -> yPosition = yPosition;
 }
 
-std::pair<int, int> getPosition()
+std::pair<int, int> BoardCell::getPosition()
 {
     return std::make_pair(this -> xPosition, this -> yPosition);
 }
