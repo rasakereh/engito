@@ -28,6 +28,7 @@ private:
     static std::map <CellType, CellColor> colorTranslator;
     static std::map <CellType, std::string> iconTranslator;
     
+    BoardCell *content;
     CellType cellType;
     CellColor cellColor;
     

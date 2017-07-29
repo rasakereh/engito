@@ -1,3 +1,4 @@
+#include "ui_GameScreen.h"
 #include "misc/SafeInclusion.cpp"
 
 #ifndef GAMESCREEN_H
@@ -15,6 +16,7 @@ class GameScreen;
 class GameScreen : public QMainWindow
 {   
     //Q_OBJECT
+    friend class BoardToGUI;
 public:
     
     explicit GameScreen(QWidget *parent = 0);

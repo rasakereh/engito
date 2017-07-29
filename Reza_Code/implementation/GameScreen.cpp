@@ -7,7 +7,6 @@
 #include <QVBoxLayout>
 
 #include "GameScreen.h"
-#include "ui_GameScreen.h"
 
 GameScreen::GameScreen(QWidget *parent) :
     QMainWindow(parent),
