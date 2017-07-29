@@ -120,8 +120,8 @@ int GameScreen::askForUserChoice(UI::OptionList optionList, int &answer, bool &r
     for(int i = 0; i < optionList.options.size(); i++)
     {
         QPushButton *btn = new QPushButton(QString("%1").arg(i + 1), &window);
+        btn->move(i*10, i*10);
         connect(btn, &QPushButton::clicked, [&, i](){answer = i + 1; readyState = true;});
-        form.addLayout(btn);
     }
     window.show();
 }
