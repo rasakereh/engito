@@ -4,8 +4,6 @@
 
 int GraphicalUI::initiateGame()
 {
-    int const MIN_PLAYER_COUNT = 2, MAX_PLAYER_COUNT = 4;
-	
 	std::string mapPath = std::string("maps/default.ejm");
 	int playerCount = 0;
     std::vector<std::string> playerNames;
@@ -18,7 +16,6 @@ int GraphicalUI::initiateGame()
     mainWindow -> show();
     dialog.exec();
 	playerCount = playerNames.size();
-    qDebug() << playerCount;
 	 
     gameScreen = new GameScreen;
     gameScreen -> show();

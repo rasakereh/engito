@@ -1,3 +1,5 @@
+#include <QDebug>
+
 #include "../headers/GameInitializer.h"
 
 GameInitializer::GameInitializer(std::string mapPath, int realPlayerCount, int networkPlayerCount, int robotPlayerCount, UI *caller)
@@ -5,10 +7,15 @@ GameInitializer::GameInitializer(std::string mapPath, int realPlayerCount, int n
 	this -> gameUI = caller;
 	this -> composeGame(mapPath, realPlayerCount, networkPlayerCount, robotPlayerCount);
 	this -> locateTreasures();
+    qDebug() << "Locating Players";
 	this -> locatePlayers();
+    qDebug() << "Changing Goal Treasure";
 	this -> gameStat -> changeGoalTreasure(false, false);	//false == current treasure is not collected
+    qDebug() << "Initiating round counter";
 	this -> gameStat -> roundCounter = 1;
+    qDebug() << "expressing new round";
 	this -> gameStat -> expressNewRound();
+    qDebug() << "Keeping Game Alive";
 	this -> gameRuler -> keepGameAlive();
 }
 
@@ -16,7 +23,8 @@ void GameInitializer::locatePlayers()
 {
 	std::function<void (Player *)> playerLocator = [&](Player *player)
 													{
-														player -> location = this -> initiatedGame -> gameBoard -> initialCells[0];
+                                                        player -> location = this -> initiatedGame -> gameBoard -> initialCells[0];
+                                                        qDebug() << "Player Position is set";
 														if(this -> initiatedGame -> gameBoard -> initialCells[0] -> occupierPlayer == nullptr)
 														{
 															this -> initiatedGame -> gameBoard -> initialCells[0] -> occupierPlayer = player;

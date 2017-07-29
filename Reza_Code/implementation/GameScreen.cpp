@@ -3,8 +3,7 @@
 
 GameScreen::GameScreen(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::GameScreen),
-    popupWindow(new QWidget(this))
+    ui(new Ui::GameScreen)
 {
     ui->setupUi(this);
     this -> setWindowTitle(tr("Enchanted Forest"));
@@ -56,7 +55,7 @@ void GameScreen::playerWonRound(std::string playerName, int treasureLocation, ch
 
 bool GameScreen::diceRollPermission()
 {
-    
+    return true;
 }
 
 void GameScreen::showTreasureTo(std::string playerName, char treasureName, int cellNumber)

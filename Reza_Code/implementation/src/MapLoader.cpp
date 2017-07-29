@@ -1,20 +1,16 @@
 #include "../headers/MapLoader.h"
 
-MapLoader::MapLoader(std::string filePath)
-{
-	char cellType[15] = {};		//buffer-overflow mitigation
-	int cellNumber = 0, adjacentCount = 0;
-	std::function<BoardCell *(char *)> createCell = [&](char* cellType) -> BoardCell *
+MapLoader::MapLoader(std::string file_name){
+    int cellNumber;
+    // a function is stored here to create a new cell and categorize it;
+    std::function<BoardCell *(BoardCell::CellType)> createCell = [&](BoardCell* cellType) -> BoardCell *
 													{
 														BoardCell *result;
-														std::string strCellType(cellType);
-														cellNumber++;
-														if(strCellType == "initialCell")
+														if(cellType == BoardCell::INITIAL)
 														{
-															cellNumber = 0;
 															result = new InitialCell;
 															result -> setMyColor();
-															result -> cellNumber = cellNumber;
+															result -> setCellNumber(cellNumber);
 															this -> initialCells.push_back(dynamic_cast<InitialCell *>(result));
 															if(this -> allCells.empty())
 															{
@@ -22,28 +18,28 @@ MapLoader::MapLoader(std::string filePath)
 															}
 															return result;
 														}
-														else if(strCellType == "decisionCell")
+														else if(cellType == BoardCell::DECISION)
 														{
 															result = new DecisionCell;
-															result -> cellNumber = cellNumber;
+															result -> setCellNumber(cellNumber);
 															this -> decisionCells.push_back(dynamic_cast<DecisionCell *>(result));
 														}
-														else if(strCellType == "transportCell")
+														else if(cellType == BoardCell::TRANSPORT)
 														{
 															result = new TransportCell;
-															result -> cellNumber = cellNumber;
+															result -> setCellNumber(cellNumber);
 															this -> transportCells.push_back(dynamic_cast<TransportCell *>(result));
 														}
-														else if(strCellType == "treasureCell")
+														else if(cellType == BoardCell::TREASURE)
 														{
 															result = new TreasureCell;
-															result -> cellNumber = cellNumber;
+															result -> setCellNumber(cellNumber);
 															this -> treasureCells.push_back(dynamic_cast<TreasureCell *>(result));
 														}
-														else if(strCellType == "ordinaryCell")
+														else if(cellType == BoardCell::ORDINARY)
 														{
 															result = new OrdinaryCell;
-															result -> cellNumber = cellNumber;
+															result -> setCellNumber(cellNumber);
 														}
 														result -> setMyColor();
 														result -> occupierPlayer = nullptr;
@@ -51,42 +47,39 @@ MapLoader::MapLoader(std::string filePath)
 														
 														return result;
 													};
-	std::function<void(BoardCell *, char *, int)> MakeAdjacent = [&](BoardCell *cell, char *cellType, int adjID) -> void
-													{
-														if(std::string(cellType) == "initialCell")
-															return;
-														if(cell -> cellNumber >= adjID)
-														{
-															cell -> addAsAdjacent(this -> allCells[adjID], true);
-														}
-														if(cell -> cellNumber == 1)
-														{
-															this -> allCells[0] -> addAsAdjacent(cell, false);
-														}
-													};
-	FILE *mapFile = fopen(filePath.c_str(), "r");
-	if(mapFile == nullptr)
-	{
-		
-	}
-	else
-	{
-		int cellCount = 0;
-		fscanf(mapFile, "%d\n", &cellCount);
-		
-		for(int fileRow = 1; fileRow <= cellCount; fileRow++)
-		{
-			fscanf(mapFile, "%s -> %d:\n", cellType, &adjacentCount);
-			BoardCell *newCell = createCell(cellType);
-			for(int adjacents = 0; adjacents < adjacentCount; adjacents++)
-			{
-				int adjacentCell = 0;
-				fscanf(mapFile, "%d ", &adjacentCell);
-				MakeAdjacent(newCell, cellType, adjacentCell);
-			}
-		}
-		this -> firstCell = this -> allCells[1];
-	}
+    const char* char_file_name = file_name.c_str();
+    FILE* fptr = fopen(char_file_name,"r");
+
+    BoardCell* temp = nullptr;
+    unsigned long long int size = 0;
+    unsigned long long int ID = 0;
+    unsigned long long int tempID = 0;
+    std::vector<int> numAdj;
+    int temp_numAdj = 0;
+    int xPos = 0 , yPos = 0;
+    BoardCell::CellType what_is_type = BoardCell::ORDINARY;
+    fread(&size, sizeof(unsigned long long int), 1, fptr);
+    for(unsigned long long int i = 0 ; i < size ; i++){
+
+        fread(&ID, sizeof(unsigned long long int), 1, fptr);
+        fread(&temp_numAdj, sizeof(int), 1, fptr);
+        fread(&what_is_type, sizeof(BoardCell::CellType), 1, fptr);
+        fread(&xPos, sizeof(int), 1, fptr);
+        fread(&yPos, sizeof(int), 1, fptr);
+        temp = createCell(what_is_type);
+        cellNumber = ID;
+        this -> allCells.push_back(temp);
+        numAdj.push_back(temp_numAdj);
+        temp->setPosition(xPos, yPos);
+    }
+    for(unsigned long long int i = 0 ; i < size ; i++){
+        for(int j = 0 ; j < numAdj.at(i) ; j++){
+            fread(&tempID, sizeof(unsigned long long int), 1, fptr);
+            auto it = std::find_if(this -> allCells.begin(), this -> allCells.end(), [&tempID](BoardCell* goal) {return goal-> getCellNumber() == tempID;});
+            this -> allCells.at(i)->addAsAdjacent(*it, false);
+        }
+    }
+    fclose(fptr);
 }
 
 std::string const &MapLoader::getLastError()

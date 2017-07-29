@@ -11,7 +11,7 @@ class BoardCell
 	friend class GameRuler;
 	friend class MapLoader;
 	public:
-		typedef enum{ORDINARY, TREASURE, TRANSPORT, DECISION, INITIAL} CellType;
+		typedef enum{ORDINARY, TREASURE, INITIAL, DECISION, TRANSPORT, NOTYPE} CellType;
 		typedef unsigned char _COLOR8;		/* R/G/B Depth of a color */
 		struct ColorRGB
 		{
@@ -28,11 +28,13 @@ class BoardCell
 		std::vector<BoardCell *> adjacentCells;
 		Player *occupierPlayer;
 		int cellNumber;
+        int xPositon, yPosition;
 		
 		void evacuate();
 		Player *inhabit(Player *newOccupier);
 		void setCellNumber(int cellNumber);
 		void addAsAdjacent(BoardCell *newAdjacent, bool applyMutually);
+        void setPosition(int x, int y);
 		
 	public:
 		virtual void setMyColor();
@@ -41,6 +43,7 @@ class BoardCell
 		Player *const &getOccupier();
 		int getCellNumber();
 		ColorRGB const &getColor();
+        std::pair<int, int> getPosition();
 		
 	protected:
 		ColorRGB cellColor;

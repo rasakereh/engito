@@ -7,6 +7,18 @@ void BoardCell::setCellNumber(int cellNumber)
 
 void BoardCell::setMyColor()
 {
+    
+}
+
+void BoardCell::setPosition(int xPosition, int yPosition)
+{
+    this -> xPosition = xPosition;
+    this -> yPosition = yPosition;
+}
+
+std::pair<int, int> getPosition()
+{
+    return std::make_pair(this -> xPosition, this -> yPosition);
 }
 
 int BoardCell::getCellNumber()

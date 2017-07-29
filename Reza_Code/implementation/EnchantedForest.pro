@@ -52,7 +52,8 @@ SOURCES += \
     mainwindow.cpp \
     GameScreen.cpp \
     src/GraphicalUI.cpp \
-    src/BoardToGUI.cpp
+    src/BoardToGUI.cpp \
+    src/CellContainer.cpp
 
 HEADERS += \
     headers/BoardCell.h \
@@ -82,7 +83,8 @@ HEADERS += \
     GameScreen.h \
     headers/GraphicalUI.h \
     headers/BoardToGUI.h \
-    MainWindow.h
+    MainWindow.h \
+    headers/CellContainer.h
 
 FORMS += \
         mainwindow.ui \

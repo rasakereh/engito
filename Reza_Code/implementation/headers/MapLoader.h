@@ -13,6 +13,7 @@
 #include "../headers/TreasureCell.h"
 #include "../headers/BoardCell.h"
 
+
 class MapLoader
 {
 	private:
