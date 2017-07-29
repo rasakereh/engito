@@ -30,7 +30,7 @@ class GameStatistics
 		void giveAnotherChance();
 		
 	public:
-		GameStatistics(int realPlayerCount, int networkPlayerCount, int robotPlayerCount);
+		GameStatistics(std::vector<std::string> realPlayers, std::vector<std::string> networkPlayers, std::vector<std::string> robotPlayers);
 		void informAboutDice(Dice::DiceResult diceResult1, Dice::DiceResult diceResult2);
 		Player *getActivePlayer();
 		void syncPlayersPositions();

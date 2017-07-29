@@ -28,7 +28,7 @@ class BoardCell
 		std::vector<BoardCell *> adjacentCells;
 		Player *occupierPlayer;
 		int cellNumber;
-        int xPositison, yPosition;
+        int xPosition, yPosition;
 		
 		void evacuate();
 		Player *inhabit(Player *newOccupier);

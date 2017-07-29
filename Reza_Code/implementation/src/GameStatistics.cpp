@@ -1,27 +1,27 @@
 #include "../headers/GameStatistics.h"
 
-GameStatistics::GameStatistics(int realPlayerCount, int networkPlayerCount, int robotPlayerCount)
+GameStatistics::GameStatistics(std::vector<std::string> realPlayers, std::vector<std::string> networkPlayers, std::vector<std::string> robotPlayers)
 {
 	this -> roundCounter = 0;
 	this -> playerMadeChoice = false;
 	this -> activePlayerDecision = nullptr;
 	
-	for(int i = 0; i < realPlayerCount; i++)
+	for(int i = 0; i < realPlayers.size(); i++)
 	{
 		RealPlayer *newPlayer = new RealPlayer;
-		newPlayer -> playerName = std::string("Player") + static_cast<char>(i + '1');
+		newPlayer -> playerName = realPlayers[i];
 		this -> players.push_back(newPlayer);
 	}
-	for(int i = 0; i < networkPlayerCount; i++)
+	for(int i = 0; i < networkPlayers.size(); i++)
 	{
 		NetworkPlayer *newPlayer = new NetworkPlayer;
-		newPlayer -> playerName = std::string("Player(Net)") + static_cast<char>(i + '1');
+		newPlayer -> playerName = networkPlayers[i];
 		this -> players.push_back(newPlayer);
 	}
-	for(int i = 0; i < robotPlayerCount; i++)
+	for(int i = 0; i < robotPlayers.size(); i++)
 	{
 		RobotPlayer *newPlayer = new RobotPlayer;
-		newPlayer -> playerName = std::string("Player(Bot)") + static_cast<char>(i + '1');
+		newPlayer -> playerName = robotPlayers[i];
 		this -> players.push_back(newPlayer);
 	}
 }

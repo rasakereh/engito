@@ -5,7 +5,8 @@ int ConsoleUI::initiateGame()
 	int const MIN_PLAYER_COUNT = 2, MAX_PLAYER_COUNT = 4;
 	
 	std::string mapPath = std::string("maps/default.ejm");
-	int playerCount = 0;
+    int playerCount = 0;
+	std::vector<std::string> players;
 	
 	if(false)
 	{
@@ -17,7 +18,7 @@ int ConsoleUI::initiateGame()
 		std::cin >> playerCount;
 	}
 	
-	GameInitializer gameInitor(mapPath, playerCount, 0, 0, this);
+	GameInitializer gameInitor(mapPath, players, std::vector<std::string>(), std::vector<std::string>(), this);
 	
 	return 0;
 }

@@ -20,7 +20,7 @@ int GraphicalUI::initiateGame()
     gameScreen = new GameScreen;
     gameScreen -> show();
 	
-	GameInitializer gameInitor(mapPath, playerCount, 0, 0, this);
+	GameInitializer gameInitor(mapPath, playerNames, std::vector<std::string>(), std::vector<std::string>(), this);
 	
 	return 0;
 }

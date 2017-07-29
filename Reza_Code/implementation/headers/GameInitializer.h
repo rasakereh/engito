@@ -24,9 +24,9 @@ class GameInitializer
 		void defineTreasures();
 		void shuffleTreasures();
 		void assembleGameBoard(std::string mapPath);
-		void composeGame(std::string mapPath, int realPlayerCount, int networkPlayerCount, int robotPlayerCount);
+		void composeGame(std::string mapPath, std::vector<std::string> realPlayers, std::vector<std::string> networkPlayers, std::vector<std::string> robotPlayers);
 		void locatePlayers();
-		GameInitializer(std::string mapPath, int realPlayerCount, int networkPlayerCount, int robotPlayerCount, UI *caller);
+		GameInitializer(std::string mapPath, std::vector<std::string> realPlayers, std::vector<std::string> networkPlayers, std::vector<std::string> robotPlayers, UI *caller);
 		
 	public:
 		

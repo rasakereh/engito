@@ -3,9 +3,10 @@
 MapLoader::MapLoader(std::string file_name){
     int cellNumber;
     // a function is stored here to create a new cell and categorize it;
-    std::function<BoardCell *(BoardCell::CellType)> createCell = [&](BoardCell* cellType) -> BoardCell *
+    std::function<BoardCell *(BoardCell::CellType)> createCell = [&](BoardCell::CellType cellType) -> BoardCell *
 													{
-														BoardCell *result;
+														qDebug() << "We are creating a(n) " << cellType;
+                                                        BoardCell *result;
 														if(cellType == BoardCell::INITIAL)
 														{
 															result = new InitialCell;
@@ -49,7 +50,7 @@ MapLoader::MapLoader(std::string file_name){
 													};
     const char* char_file_name = file_name.c_str();
     FILE* fptr = fopen(char_file_name,"r");
-
+qDebug() << char_file_name << fptr;
     BoardCell* temp = nullptr;
     unsigned long long int size = 0;
     unsigned long long int ID = 0;
@@ -58,14 +59,17 @@ MapLoader::MapLoader(std::string file_name){
     int temp_numAdj = 0;
     int xPos = 0 , yPos = 0;
     BoardCell::CellType what_is_type = BoardCell::ORDINARY;
+    int intTypeEquiv;
     fread(&size, sizeof(unsigned long long int), 1, fptr);
     for(unsigned long long int i = 0 ; i < size ; i++){
 
         fread(&ID, sizeof(unsigned long long int), 1, fptr);
         fread(&temp_numAdj, sizeof(int), 1, fptr);
-        fread(&what_is_type, sizeof(BoardCell::CellType), 1, fptr);
+        fread(&intTypeEquiv, sizeof(int), 1, fptr);
         fread(&xPos, sizeof(int), 1, fptr);
         fread(&yPos, sizeof(int), 1, fptr);
+        what_is_type = static_cast<BoardCell::CellType> (intTypeEquiv);
+        qDebug() << "Loading a " << what_is_type;
         temp = createCell(what_is_type);
         cellNumber = ID;
         this -> allCells.push_back(temp);

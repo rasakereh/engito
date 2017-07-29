@@ -2,10 +2,10 @@
 
 #include "../headers/GameInitializer.h"
 
-GameInitializer::GameInitializer(std::string mapPath, int realPlayerCount, int networkPlayerCount, int robotPlayerCount, UI *caller)
+GameInitializer::GameInitializer(std::string mapPath, std::vector<std::string> realPlayers, std::vector<std::string> networkPlayers, std::vector<std::string> robotPlayers, UI *caller)
 {
 	this -> gameUI = caller;
-	this -> composeGame(mapPath, realPlayerCount, networkPlayerCount, robotPlayerCount);
+	this -> composeGame(mapPath, realPlayers, networkPlayers, robotPlayers);
 	this -> locateTreasures();
     qDebug() << "Locating Players";
 	this -> locatePlayers();
@@ -47,11 +47,11 @@ void GameInitializer::assembleGameBoard(std::string mapPath)
 	this -> gameBoard -> loadAllCells(this -> gameMap -> getInitialCells(), this -> gameMap -> getTreasureCells(), this -> gameMap -> getDecisionCells(), this -> gameMap -> getTransportCells(), this -> gameMap -> getFirstCell());
 }
 
-void GameInitializer::composeGame(std::string mapPath, int realPlayerCount, int networkPlayerCount, int robotPlayerCount)
+void GameInitializer::composeGame(std::string mapPath, std::vector<std::string> realPlayers, std::vector<std::string> networkPlayers, std::vector<std::string> robotPlayers)
 {
 	this -> assembleGameBoard(mapPath);
 	this -> gameRuler = new GameRuler;
-	this -> gameStat = new GameStatistics(realPlayerCount, 0, 0);
+	this -> gameStat = new GameStatistics(realPlayers, networkPlayers, robotPlayers);
 	this -> initiatedGame = new Game(this -> gameBoard, this -> gameRuler, this -> gameStat, this -> gameUI);
 }
 
