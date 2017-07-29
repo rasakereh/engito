@@ -77,8 +77,9 @@ void GraphicalUI::showTreasureTo(std::string playerName, char treasureName, int 
 int GraphicalUI::askForUserChoice(UI::OptionList optionList)
 {
     bool doneState = false;
-    int returnValue;
-    std::thread getReturnValue(this -> gameScreen -> askForUserChoice, optionList, returnValue, doneState);
+    int returnValue = -1;
+    auto userChoiceGetter = std::bind(&GameScreen::askForUserChoice, this -> gameScreen, optionList, &returnValue, &doneState);
+    std::thread getReturnValue(userChoiceGetter);
     while(doneState == false)
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
     getReturnValue.join();

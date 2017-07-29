@@ -6,5 +6,11 @@
         <file>icon/Dice/4.png</file>
         <file>icon/Dice/5.png</file>
         <file>icon/Dice/6.png</file>
+        <file>icon/Cells/DecisionCell.png</file>
+        <file>icon/Cells/highlight.png</file>
+        <file>icon/Cells/InitialCell.png</file>
+        <file>icon/Cells/OrdinaryCell.png</file>
+        <file>icon/Cells/TransportCell.png</file>
+        <file>icon/Cells/TreasureCell.png</file>
     </qresource>
 </RCC>

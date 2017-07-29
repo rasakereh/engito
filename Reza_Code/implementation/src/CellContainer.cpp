@@ -1,21 +1,21 @@
 #include "../headers/CellContainer.h"
 
-std::map <Cell::CellType, Cell::CellColor> Cell::colorTranslator = {
-                                                            {Cell::DECISION, Cell::RED},
-                                                            {Cell::TREASURE, Cell::ORANGE},
-                                                            {Cell::INITIAL, Cell::BLUE},
-                                                            {Cell::ORDINARY, Cell::GREEN},
-                                                            {Cell::TRANSPORT, Cell::VIOLET},
+std::map <CellContainer::CellType, CellContainer::CellColor> CellContainer::colorTranslator = {
+                                                            {CellContainer::DECISION, CellContainer::RED},
+                                                            {CellContainer::TREASURE, CellContainer::ORANGE},
+                                                            {CellContainer::INITIAL, CellContainer::BLUE},
+                                                            {CellContainer::ORDINARY, CellContainer::GREEN},
+                                                            {CellContainer::TRANSPORT, CellContainer::VIOLET},
                                                         };
-std::map <Cell::CellType, std::string> Cell::iconTranslator = {
-                                                            {Cell::DECISION, ":/icons/DecisionCell"},
-                                                            {Cell::TREASURE, ":/icons/TreasureCell"},
-                                                            {Cell::INITIAL, ":/icons/InitialCell"},
-                                                            {Cell::ORDINARY, ":/icons/OrdinaryCell"},
-                                                            {Cell::TRANSPORT, ":/icons/TransportCell"},
+std::map <CellContainer::CellType, std::string> CellContainer::iconTranslator = {
+                                                            {CellContainer::DECISION, ":/icons/Cells/DecisionCell"},
+                                                            {CellContainer::TREASURE, ":/icons/Cells/TreasureCell"},
+                                                            {CellContainer::INITIAL, ":/icons/Cells/InitialCell"},
+                                                            {CellContainer::ORDINARY, ":/icons/Cells/OrdinaryCell"},
+                                                            {CellContainer::TRANSPORT, ":/icons/Cells/TransportCell"},
                                                         };
 
-Cell::Cell(Cell::CellType cellType, QWidget *parent): QLabel(parent)
+CellContainer::CellContainer(CellContainer::CellType cellType, QWidget *parent): QLabel(parent)
 {
     int width = WIDTHCELL;
     int height = HEIGHTCELL;
@@ -26,76 +26,17 @@ Cell::Cell(Cell::CellType cellType, QWidget *parent): QLabel(parent)
     this -> setColor();
 }
 
-void Cell::loadImage()
+void CellContainer::loadImage()
 {
-    this -> setPixmap(QPixmap(Cell::iconTranslator[this -> cellType].c_str()));
+    this -> setPixmap(QPixmap(CellContainer::iconTranslator[this -> cellType].c_str()));
 }
 
-void Cell::setColor()
+void CellContainer::setColor()
 {
-    this -> cellColor = Cell::colorTranslator[this -> cellType];
+    this -> cellColor = CellContainer::colorTranslator[this -> cellType];
 }
 
-void Cell::highlight()
+void CellContainer::highlight()
 {
-    this -> setPixmap(QPixmap(":/icons/highlight"));
-}
-
-bool Cell::addAdjacent(Cell *newCell)
-{
-    this -> adjacentList.push_back(newCell);
-    return true;
-}
-
-bool Cell::removeAdjacent(Cell *oldAdjacent)
-{
-    auto oldAdjacentElement = std::find(this -> adjacentList.begin(), this -> adjacentList.end(), oldAdjacent);
-    if(oldAdjacentElement == this -> adjacentList.end())
-    {
-        return false;
-    }
-    this -> adjacentList.erase(oldAdjacentElement);
-    
-    return true;
-}
-
-void Cell::setCellID(unsigned long long int cellID)
-{
-    this -> cellID = cellID;
-}
-
-void Cell::setAdjacentList(const std::vector<Cell *> &adjacentList)
-{
-    this -> adjacentList = adjacentList;
-}
-
-void Cell::setPos(const int &xPos, const int &yPos)
-{
-    this -> xPosition = xPos;
-    this -> yPosition = yPos;
-}
-
-const std::vector<Cell *> &Cell::getAdjacentList()
-{
-    return this -> adjacentList;
-}
-
-const Cell::CellType &Cell::getCellType()
-{
-    return this -> cellType;
-}
-
-const unsigned long long &Cell::getCellID()
-{
-    return this -> cellID;
-}
-
-const int &Cell::getXPos()
-{
-    return this -> xPosition;
-}
-
-const int &Cell::getYPos()
-{
-    return this -> yPosition;
+    this -> setPixmap(QPixmap(":/icons/Cells/highlight"));
 }

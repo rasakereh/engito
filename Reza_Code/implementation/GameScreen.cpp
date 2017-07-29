@@ -113,7 +113,7 @@ void GameScreen::showTreasureTo(std::string playerName, char treasureName, int c
     this -> showPopupMessage(QString("Amoo, bebine:\n\t%1 injast!").arg(treasureName), 1000);
 }
 
-int GameScreen::askForUserChoice(UI::OptionList optionList, int &answer, bool &readyState)
+int GameScreen::askForUserChoice(UI::OptionList optionList, int *answer, bool *readyState)
 {
     QWidget window;
     QVBoxLayout form(&window);
@@ -121,7 +121,7 @@ int GameScreen::askForUserChoice(UI::OptionList optionList, int &answer, bool &r
     {
         QPushButton *btn = new QPushButton(QString("%1").arg(i + 1), &window);
         btn->move(i*10, i*10);
-        connect(btn, &QPushButton::clicked, [&, i](){answer = i + 1; readyState = true;});
+        connect(btn, &QPushButton::clicked, [&, i](){*answer = i + 1; *readyState = true;});
     }
     window.show();
 }

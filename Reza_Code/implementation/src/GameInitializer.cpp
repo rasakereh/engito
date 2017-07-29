@@ -57,7 +57,6 @@ void GameInitializer::locateTreasures()
 																if(firstEmptyCell != this -> initiatedGame -> gameBoard -> treasureCells.end())
 																{
 																	(*firstEmptyCell) -> cellTreasure = treasure;
-                                                                    printf("%c is at %d\n", treasure -> treasureName, (*firstEmptyCell) -> getCellNumber());
 																}
 															};
 	
