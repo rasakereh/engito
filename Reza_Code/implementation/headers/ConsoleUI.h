@@ -24,6 +24,7 @@ class ConsoleUI : public UI
 		void playerWonRound(std::string playerName, int treasureLocation, char treasureName);
 		void showTreasureTo(std::string playerName, char treasureName, int cellNumber);
 		int askForUserChoice(UI::OptionList);
+        std::pair<int, int> askUserForDice();
 		
 	protected:
 };

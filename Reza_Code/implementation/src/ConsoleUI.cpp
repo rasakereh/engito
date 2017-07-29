@@ -34,6 +34,24 @@ bool ConsoleUI::diceRollPermission()
 	return true;
 }
 
+std::pair<int, int> ConsoleUI::askUserForDice()
+{
+    int firstDie = 0, secondDie = 0;
+    while(firstDie > 6 || firstDie < 1)
+    {
+        std::cout << "Select first die number:";
+        std::cin >> firstDie;
+    }
+    
+    while(secondDie > 6 || secondDie < 1)
+    {
+        std::cout << "Select first die number:";
+        std::cin >> secondDie;
+    }
+    
+    return std::make_pair(firstDie, secondDie);
+}
+
 void ConsoleUI::expressNewRound(int roundCount, char treasureName)
 {
 	std::cout << "Round number " << roundCount << " started, this round's goal treasure is " << treasureName << std::endl;

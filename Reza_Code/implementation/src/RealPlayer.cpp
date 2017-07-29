@@ -5,8 +5,13 @@ void RealPlayer::takeDice()
 	if(this -> activeGame -> gameUI -> diceRollPermission())
 	{
 		this -> rollDice();
-		this -> playDice();
 	}
+    else
+    {
+        this -> activeGame -> gameRuler -> setDice(this -> activeGame -> gameUI -> askUserForDice());
+    }
+    
+    this -> playDice();
 }
 
 void RealPlayer::playDice()

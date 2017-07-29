@@ -21,6 +21,16 @@ void GameRuler::keepGameAlive()
 	}
 }
 
+void GameRuler::setDice(std::pair<int, int> diceValues)
+{
+    Dice::DiceResult diceResult1, diceResult2;
+	diceResult1.diceValue = diceValues.first;
+	diceResult1.diceState = PERMITTED;
+	diceResult2.diceValue = diceValues.second;
+	diceResult2.diceState = PERMITTED;
+	this -> ownerGame -> gameStat -> informAboutDice(diceResult1, diceResult2);
+}
+
 void GameRuler::runCurrentTurn()
 {
 	this -> assignDice();

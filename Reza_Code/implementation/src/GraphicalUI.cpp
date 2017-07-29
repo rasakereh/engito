@@ -1,6 +1,7 @@
 #include "../headers/GraphicalUI.h"
 #include <QDebug>
 #include <QDialog>
+#include <QInputDialog>
 
 int GraphicalUI::initiateGame()
 {
@@ -23,6 +24,11 @@ int GraphicalUI::initiateGame()
 	GameInitializer gameInitor(mapPath, playerNames, std::vector<std::string>(), std::vector<std::string>(), this);
 	
 	return 0;
+}
+
+std::pair<int, int> GraphicalUI::askUserForDice()
+{
+    return this -> gameScreen -> askUserDice();
 }
 
 bool GraphicalUI::diceRollPermission()

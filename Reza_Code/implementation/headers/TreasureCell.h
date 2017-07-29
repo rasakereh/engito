@@ -10,6 +10,7 @@ class TreasureCell : public BoardCell
 {
 	friend class GameInitializer;
 	friend class GameStatistics;
+    friend class MapLoader;
 	private:
 		Treasure *cellTreasure;
 		

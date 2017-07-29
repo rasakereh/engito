@@ -7,15 +7,10 @@ GameInitializer::GameInitializer(std::string mapPath, std::vector<std::string> r
 	this -> gameUI = caller;
 	this -> composeGame(mapPath, realPlayers, networkPlayers, robotPlayers);
 	this -> locateTreasures();
-    qDebug() << "Locating Players";
 	this -> locatePlayers();
-    qDebug() << "Changing Goal Treasure";
 	this -> gameStat -> changeGoalTreasure(false, false);	//false == current treasure is not collected
-    qDebug() << "Initiating round counter";
 	this -> gameStat -> roundCounter = 1;
-    qDebug() << "expressing new round";
 	this -> gameStat -> expressNewRound();
-    qDebug() << "Keeping Game Alive";
 	this -> gameRuler -> keepGameAlive();
 }
 
@@ -24,7 +19,6 @@ void GameInitializer::locatePlayers()
 	std::function<void (Player *)> playerLocator = [&](Player *player)
 													{
                                                         player -> location = this -> initiatedGame -> gameBoard -> initialCells[0];
-                                                        qDebug() << "Player Position is set";
 														if(this -> initiatedGame -> gameBoard -> initialCells[0] -> occupierPlayer == nullptr)
 														{
 															this -> initiatedGame -> gameBoard -> initialCells[0] -> occupierPlayer = player;
@@ -63,8 +57,8 @@ void GameInitializer::locateTreasures()
 																if(firstEmptyCell != this -> initiatedGame -> gameBoard -> treasureCells.end())
 																{
 																	(*firstEmptyCell) -> cellTreasure = treasure;
+                                                                    printf("%c is at %d\n", treasure -> treasureName, (*firstEmptyCell) -> getCellNumber());
 																}
-																printf("%c is at %d\n", treasure -> treasureName, (*firstEmptyCell) -> getCellNumber());
 															};
 	
 	this -> defineTreasures();

@@ -21,6 +21,7 @@ class GameRuler
 		Game *ownerGame;
 		
 		void assignDice();
+        void setDice(std::pair<int, int> diceValues);
 		void applyPlayerChoice();
 		void playerGotRed();
 		void takeDiceBack();

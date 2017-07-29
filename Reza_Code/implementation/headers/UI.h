@@ -30,6 +30,7 @@ class UI
 		virtual void playerWonRound(std::string playerName, int treasureLocation, char treasureName) = 0;
 		virtual void showTreasureTo(std::string playerName, char treasureName, int cellNumber) = 0;
 		virtual int askForUserChoice(UI::OptionList) = 0;
+        virtual std::pair<int, int> askUserForDice() = 0;
 		
 	protected:
 };

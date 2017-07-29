@@ -1,9 +1,14 @@
+#include <QDialog>
+#include <QInputDialog>
+#include <QCheckBox>
+#include <QFormLayout>
+
 #include "GameScreen.h"
 #include "ui_GameScreen.h"
 
 GameScreen::GameScreen(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::GameScreen)
+    ui(new Ui::GameScreen), randomForEver(false), customForEver(false)
 {
     ui->setupUi(this);
     this -> setWindowTitle(tr("Enchanted Forest"));
@@ -55,7 +60,43 @@ void GameScreen::playerWonRound(std::string playerName, int treasureLocation, ch
 
 bool GameScreen::diceRollPermission()
 {
-    return true;
+    bool permit = false;
+    if((randomForEver || customForEver) == false)
+    {
+        QDialog askForPermission(this);
+        askForPermission.setWindowModality(Qt::ApplicationModal);
+        QFormLayout *layout = new QFormLayout(&askForPermission);
+        layout -> addRow(new QLabel("Do you want to use custom dice?"));
+        QPushButton *yesButton("Yes"), *noButton("No");
+        layout -> addRow(yesButton);
+        layout -> addRow(noButton);
+        QCheckBox *rememberChoice = new QCheckbox(&askForPermission);
+        rememberChoice -> setText("Remember my choice");
+        layout->addRow(rememberChoice);
+        connect(yesButton, SIGNAL(clicked()), &askForPermission, SLOT(accept()));
+        connect(noButton, SIGNAL(clicked()), &askForPermission, SLOT(reject()));
+        int customPermission = askForPermission.exec();
+        permit = (customPermission == QDialog::Rejected);
+    }
+    
+    return permit;
+}
+
+std::pair<int, int> askUserDice()
+{
+    int firstDie, secondDie;
+    bool ok = false;
+    do
+    {
+        firstDie = QInputDialog::getInt(this, "First Die", "Enter First Die:", 1, 1, 6, 1, &ok);
+    }while(ok == false);
+    
+    do
+    {
+        secondDie = QInputDialog::getInt(this, "Second Die", "Enter Second Die:", 1, 1, 6, 1, &ok);
+    }while(ok == false);
+    
+    return std::make_pair(firstDie, secondDie);
 }
 
 void GameScreen::showTreasureTo(std::string playerName, char treasureName, int cellNumber)

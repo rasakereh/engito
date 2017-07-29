@@ -27,12 +27,15 @@ public:
     void playerWonRound(std::string playerName, int treasureLocation, char treasureName);
     void showTreasureTo(std::string playerName, char treasureName, int cellNumber);
     int askForUserChoice(UI::OptionList optionList);
+    std::pair<int, int> askUserDice();
     
     virtual ~GameScreen();
     
 private:
     Ui::GameScreen *ui;
     QWidget *popupWindow;
+    bool randomForEver;
+    bool customForEver;
     
     void showPopupMessage(QString, int);
 };
