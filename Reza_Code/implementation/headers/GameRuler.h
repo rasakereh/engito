@@ -21,7 +21,6 @@ class GameRuler
 		Game *ownerGame;
 		
 		void assignDice();
-        void setDice(std::pair<int, int> diceValues);
 		void applyPlayerChoice();
 		void playerGotRed();
 		void takeDiceBack();
@@ -33,6 +32,7 @@ class GameRuler
 	public:
 		std::vector<Decision *> evaluateOptionList();
 		std::vector<CellDecision *> getCellDecisionList();
+        void setDice(std::pair<int, int> diceValues);
 		
 	protected:
 };

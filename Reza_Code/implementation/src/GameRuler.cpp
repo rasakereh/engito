@@ -25,9 +25,9 @@ void GameRuler::setDice(std::pair<int, int> diceValues)
 {
     Dice::DiceResult diceResult1, diceResult2;
 	diceResult1.diceValue = diceValues.first;
-	diceResult1.diceState = PERMITTED;
+	diceResult1.diceState = Dice::PERMITTED;
 	diceResult2.diceValue = diceValues.second;
-	diceResult2.diceState = PERMITTED;
+	diceResult2.diceState = Dice::PERMITTED;
 	this -> ownerGame -> gameStat -> informAboutDice(diceResult1, diceResult2);
 }
 
