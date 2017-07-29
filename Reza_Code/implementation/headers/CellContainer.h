@@ -17,7 +17,7 @@
 class CellContainer: public QLabel
 {
 //friend std::vector<Cell*> SaverLoader::loadMap(std::string file_name);
-//friend class MapDraft;
+friend class BoardToGUI;
 
 public:
     typedef enum{ORDINARY, TREASURE, INITIAL, DECISION, TRANSPORT, NOTYPE} CellType;

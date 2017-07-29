@@ -1,5 +1,10 @@
 #include "../headers/GameBoard.h"
 
+std::vector<BoardCell *> const &GameBoard::getAllCells()
+{
+	return this -> allCells;
+}
+
 std::vector<InitialCell *> const &GameBoard::getInitialCells()
 {
 	return this -> initialCells;

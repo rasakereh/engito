@@ -10,7 +10,7 @@ class BoardCell
 	friend class GameInitializer;
 	friend class GameRuler;
 	friend class MapLoader;
-    friend class CellContainer;
+    friend class BoardToGUI;
 	public:
 		typedef enum{ORDINARY, TREASURE, INITIAL, DECISION, TRANSPORT, NOTYPE} CellType;
 		typedef unsigned char _COLOR8;		/* R/G/B Depth of a color */
