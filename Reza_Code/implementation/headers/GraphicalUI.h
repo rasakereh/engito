@@ -13,7 +13,7 @@
 class GraphicalUI: public UI
 {
 friend class GameRuler;
-
+friend class BoardToGUI;
 public:
     int initiateGame();
     bool diceRollPermission();

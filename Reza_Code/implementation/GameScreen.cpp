@@ -115,15 +115,14 @@ void GameScreen::showTreasureTo(std::string playerName, char treasureName, int c
 
 int GameScreen::askForUserChoice(UI::OptionList optionList, int *answer, bool *readyState)
 {
-    QWidget window;
-    QVBoxLayout form(&window);
+    QWidget *qwin = new QWidget(this);
     for(int i = 0; i < optionList.options.size(); i++)
     {
-        QPushButton *btn = new QPushButton(QString("%1").arg(i + 1), &window);
+        QPushButton *btn = new QPushButton(QString("%1").arg(i + 1), qwin);
         btn->move(i*10, i*10);
         connect(btn, &QPushButton::clicked, [&, i](){*answer = i + 1; *readyState = true;});
     }
-    window.show();
+    qwin->show();
 }
 
 GameScreen::~GameScreen()

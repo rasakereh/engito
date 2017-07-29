@@ -6,9 +6,13 @@
 #include "ConsoleUI.h"
 #include "GraphicalUI.h"
 #include "GameBoard.h"
+#include "CellContainer.h"
 
 class BoardToGUI
 {
+private:
+    std::vector<CellContainer *> cells;
+    
 public:
     void translateBoardToUI(ConsoleUI *gameUI, GameBoard *gameBoard);
     void translateBoardToUI(GraphicalUI *gameUI, GameBoard *gameBoard);

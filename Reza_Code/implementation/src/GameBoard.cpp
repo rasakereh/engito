@@ -48,12 +48,14 @@ void GameBoard::loadTransportCells(std::vector<TransportCell *> const &transport
 	std::copy(transportCells.begin(), transportCells.end(), currentCell);
 }
 
-void GameBoard::loadAllCells(std::vector<InitialCell *> const &initialCells,
+void GameBoard::loadAllCells(std::vector<BoardCell *> const &allCells,
+                             std::vector<InitialCell *> const &initialCells,
 							 std::vector<TreasureCell *> const &treasureCells,
 							 std::vector<DecisionCell *> const &decisionCells,
 							 std::vector<TransportCell *> const &transportCells,
 							 BoardCell *firstCell)
 {
+    this -> allCells = allCells;
 	this -> loadInitialCells(initialCells);
 	this -> loadTreasureCells(treasureCells);
 	this -> loadDecisionCells(decisionCells);

@@ -38,7 +38,7 @@ void GameInitializer::assembleGameBoard(std::string mapPath)
 	this -> gameBoard = new GameBoard;
 	this -> gameBoard -> gameDice = this -> gameDice;
 	this -> gameBoard -> gameDice -> gameBoard = this -> gameBoard;
-	this -> gameBoard -> loadAllCells(this -> gameMap -> getInitialCells(), this -> gameMap -> getTreasureCells(), this -> gameMap -> getDecisionCells(), this -> gameMap -> getTransportCells(), this -> gameMap -> getFirstCell());
+	this -> gameBoard -> loadAllCells(this -> gameMap -> getAllCells(),this -> gameMap -> getInitialCells(), this -> gameMap -> getTreasureCells(), this -> gameMap -> getDecisionCells(), this -> gameMap -> getTransportCells(), this -> gameMap -> getFirstCell());
 }
 
 void GameInitializer::composeGame(std::string mapPath, std::vector<std::string> realPlayers, std::vector<std::string> networkPlayers, std::vector<std::string> robotPlayers)

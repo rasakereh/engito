@@ -17,6 +17,7 @@ class GameBoard
 	friend class GameInitializer;
 	friend class GameRuler;
 	private:
+        std::vector<BoardCell *> allCells;
 		std::vector<InitialCell *> initialCells;
 		std::vector<TreasureCell *> treasureCells;
 		std::vector<DecisionCell *> decisionCells;
@@ -30,9 +31,10 @@ class GameBoard
 	public:
 		Game *ownerGame;
 		Dice *gameDice;
-		void loadAllCells(std::vector<InitialCell *> const &initialCells, std::vector<TreasureCell *> const &treasureCells, 
+		void loadAllCells(std::vector<BoardCell *> const &allCells, std::vector<InitialCell *> const &initialCells, std::vector<TreasureCell *> const &treasureCells, 
 							std::vector<DecisionCell *> const &decisionCells, std::vector<TransportCell *> const &transportCells, BoardCell *firstCell);
-		std::vector<InitialCell *> const &getInitialCells();
+		std::vector<BoardCell *> const &getAllCells();
+        std::vector<InitialCell *> const &getInitialCells();
 		std::vector<TreasureCell *> const &getTreasureCells();
 		std::vector<DecisionCell *> const &getDecisionCells();
 		std::vector<TransportCell *> const &getTransportCells();

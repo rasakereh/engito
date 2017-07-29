@@ -28,8 +28,9 @@ class MapLoader
 	public:
 		MapLoader(std::string);
 		std::string const &getLastError();
-		std::vector<InitialCell *> const &getInitialCells();
-		std::vector<DecisionCell *> const &getDecisionCells();
+		std::vector<BoardCell *> const &getAllCells();
+        std::vector<InitialCell *> const &getInitialCells();
+        std::vector<DecisionCell *> const &getDecisionCells();
 		std::vector<TransportCell *> const &getTransportCells();
 		std::vector<TreasureCell *> const &getTreasureCells();
 		BoardCell *getFirstCell();

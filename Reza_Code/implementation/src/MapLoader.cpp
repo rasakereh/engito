@@ -91,6 +91,11 @@ std::string const &MapLoader::getLastError()
 	return this -> lastError;
 }
 
+std::vector<BoardCell *> const &MapLoader::getAllCells()
+{
+    return this -> allCells;
+}
+
 std::vector<InitialCell *> const &MapLoader::getInitialCells()
 {
 	return this -> initialCells;

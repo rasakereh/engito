@@ -1,6 +1,8 @@
 #include <chrono>
 
 #include "../headers/GraphicalUI.h"
+
+#include <QApplication>
 #include <QDebug>
 #include <QDialog>
 #include <QInputDialog>
@@ -78,11 +80,12 @@ int GraphicalUI::askForUserChoice(UI::OptionList optionList)
 {
     bool doneState = false;
     int returnValue = -1;
-    auto userChoiceGetter = std::bind(&GameScreen::askForUserChoice, this -> gameScreen, optionList, &returnValue, &doneState);
-    std::thread getReturnValue(userChoiceGetter);
+    this -> gameScreen -> askForUserChoice(optionList, &returnValue, &doneState);
     while(doneState == false)
+    {
+        QCoreApplication::processEvents();
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
-    getReturnValue.join();
+    }
     QMessageBox::information(nullptr, "result", QString("%1").arg(returnValue));
     return returnValue;
 }
