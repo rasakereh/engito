@@ -5,7 +5,7 @@ MapLoader::MapLoader(std::string file_name){
     // a function is stored here to create a new cell and categorize it;
     std::function<BoardCell *(BoardCell::CellType)> createCell = [&](BoardCell::CellType cellType) -> BoardCell *
 													{
-                                                        BoardCell *result;
+                                                        BoardCell *result;qDebug() << cellType;
 														if(cellType == BoardCell::INITIAL)
 														{
 															result = new InitialCell;
@@ -44,12 +44,11 @@ MapLoader::MapLoader(std::string file_name){
 														}
 														result -> setMyColor();
 														result -> occupierPlayer = nullptr;
-														this -> allCells.push_back(result);
 														
 														return result;
 													};
     const char* char_file_name = file_name.c_str();
-    FILE* fptr = fopen(char_file_name,"r");
+    FILE* fptr = fopen(char_file_name,"rb");
 
     BoardCell* temp = nullptr;
     unsigned long long int size = 0;

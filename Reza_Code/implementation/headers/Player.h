@@ -13,6 +13,7 @@
 class Player
 {
 	friend class GameStatistics;
+    friend class BoardToGUI;
 	private:
 		virtual std::pair<Dice::DiceResult, Dice::DiceResult> rollDice() = 0;
 		virtual void playDice() = 0;

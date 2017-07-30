@@ -12,5 +12,9 @@
         <file>icon/Cells/OrdinaryCell.png</file>
         <file>icon/Cells/TransportCell.png</file>
         <file>icon/Cells/TreasureCell.png</file>
+        <file>icon/Players/player1.png</file>
+        <file>icon/Players/player2.png</file>
+        <file>icon/Players/player3.png</file>
+        <file>icon/Players/player4.png</file>
     </qresource>
 </RCC>

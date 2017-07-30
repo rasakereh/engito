@@ -7,11 +7,17 @@
 #include "GraphicalUI.h"
 #include "GameBoard.h"
 #include "CellContainer.h"
+#include "GameStatistics.h"
+#include "PlayerContainer.h"
 
 class BoardToGUI
 {
 private:
     std::vector<CellContainer *> cells;
+    std::vector<CellContainer *> players;
+    
+    void packCells(ConsoleUI *gameUI, GameBoard *gameBoard);
+    void packPlayers(GraphicalUI *gameUI, GameBoard *gameBoard);
     
 public:
     void translateBoardToUI(ConsoleUI *gameUI, GameBoard *gameBoard);

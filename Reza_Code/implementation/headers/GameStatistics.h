@@ -33,6 +33,7 @@ class GameStatistics
 		GameStatistics(std::vector<std::string> realPlayers, std::vector<std::string> networkPlayers, std::vector<std::string> robotPlayers);
 		void informAboutDice(Dice::DiceResult diceResult1, Dice::DiceResult diceResult2);
 		Player *getActivePlayer();
+        std::vector<Player *> const &getAllPlayers();
 		void syncPlayersPositions();
 		void resetPlayer(Player *player);
 		void rememberPlayerChoice(Decision *playerChoice);

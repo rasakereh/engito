@@ -24,6 +24,7 @@ int GraphicalUI::initiateGame()
 	playerCount = playerNames.size();
 	 
     gameScreen = new GameScreen;
+    gameScreen -> gameUI = this;
     gameScreen -> show();
 	
 	GameInitializer gameInitor(mapPath, playerNames, std::vector<std::string>(), std::vector<std::string>(), this);
@@ -58,6 +59,7 @@ void GraphicalUI::expressTreasureChange(int roundCount, char treasureName)
 
 void GraphicalUI::updatePlayerPositions(std::map<std::string, int> &playersPosition)
 {
+    std::for_each(playersPosition.begin(), playersPosition.end(), [&](std::pair<std::string const, int> data){this -> placePlayerAt(data.first, data.second);});
     return this -> gameScreen -> updatePlayerPositions(playersPosition);
 }
 
@@ -86,6 +88,27 @@ int GraphicalUI::askForUserChoice(UI::OptionList optionList)
         QCoreApplication::processEvents();
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
     }
+    std::for_each(this -> cells.begin(), this -> cells.end(), [](CellContainer *cell){cell -> normalize();});
     QMessageBox::information(nullptr, "result", QString("%1").arg(returnValue));
     return returnValue;
+}
+
+std::vector<CellContainer *> &GraphicalUI::getCells()
+{
+    return this -> cells;
+}
+
+std::vector<CellContainer *> &GraphicalUI::getPlayers()
+{
+    return this -> players;
+}
+
+void GraphicalUI::placePlayerAt(std::string playerName, int position)
+{
+    auto desiredPlayer = std::find_if(this -> players.begin(), this -> players.end(), [&playerName](PlayerContainer *player)->bool{return (player -> getPlayerName() == playerName);});
+    auto desiredCell = std::find_if(this -> cells.begin(), this -> cells.end(), [&position](CellContainer *cell)->bool{return (cell -> getCellID() == position);});
+    if(desiredPlayer != this -> players.end())
+    {
+        (*desiredPlayer) -> setParent(*desiredCell);
+    }
 }

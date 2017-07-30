@@ -7,6 +7,7 @@
 #include <QVBoxLayout>
 
 #include "GameScreen.h"
+#include "headers/BoardToGUI.h"
 
 GameScreen::GameScreen(QWidget *parent) :
     QMainWindow(parent),
@@ -85,6 +86,10 @@ bool GameScreen::diceRollPermission()
             customForEver = !permit;
         }
     }
+    else
+    {
+        permit = randomForEver;
+    }
     
     return permit;
 }
@@ -114,14 +119,23 @@ void GameScreen::showTreasureTo(std::string playerName, char treasureName, int c
 
 int GameScreen::askForUserChoice(UI::OptionList optionList, int *answer, bool *readyState)
 {
-    QWidget *qwin = new QWidget(this);
     for(int i = 0; i < optionList.options.size(); i++)
     {
-        QPushButton *btn = new QPushButton(QString("%1").arg(i + 1), qwin);
-        btn->move(i*10, i*10);
-        connect(btn, &QPushButton::clicked, [&, i](){*answer = i + 1; *readyState = true;});
+        const char *optionString = optionList.options[i].c_str();
+        int cellID;
+        sscanf(optionString, "Move to %d", &cellID);
+        auto cellContainer = std::find_if(this -> gameUI -> getCells().begin(), this -> gameUI -> getCells().end(), [&](CellContainer *cell){return cell -> getCellID() == cellID;});
+        if(cellContainer != this -> gameUI -> getCells().end())
+        {
+            (*cellContainer) -> highlight();
+            this -> connectionList.push_back(connect(*cellContainer, &CellContainer::clicked, [&, i, cellContainer](){this -> emptyConnections(); *answer = i; *readyState = true;}));
+        }
     }
-    qwin->show();
+}
+
+void GameScreen::emptyConnections()
+{
+    std::for_each(this -> connectionList.begin(), this -> connectionList.end(), [](QMetaObject::Connection &connection){QObject::disconnect(connection);});
 }
 
 GameScreen::~GameScreen()

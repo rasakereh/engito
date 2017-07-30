@@ -12,11 +12,9 @@ Game::Game(GameBoard *gameBoard, GameRuler *gameRuler, GameStatistics *gameStat,
 	this -> gameStat -> ownerGame = this;
 	std::for_each(this -> gameStat -> players.begin(), this -> gameStat -> players.end(), [&](Player *player){player -> activeGame = this;});
 	this -> gameUI = gameUI;
-    #ifdef __GRAPHIC__
-        translator.translateBoardToUI(dynamic_cast<GraphicUI>(this -> gameUI), this -> gameBoard);
-    #endif
     
-    #ifdef __CONSOLE__
-        translator.translateBoardToUI(dynamic_cast<ConsoleUI>(this -> gameUI), this -> gameBoard);
-    #endif
+    if(dynamic_cast<GraphicalUI *>(this -> gameUI))
+        translator.translateBoardToUI(dynamic_cast<GraphicalUI *>(this -> gameUI), this -> gameBoard);
+    else if(dynamic_cast<ConsoleUI *>(this -> gameUI))
+        translator.translateBoardToUI(dynamic_cast<ConsoleUI *>(this -> gameUI), this -> gameBoard);
 }

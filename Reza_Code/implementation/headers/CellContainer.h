@@ -18,10 +18,15 @@ class CellContainer: public QLabel
 {
 //friend std::vector<Cell*> SaverLoader::loadMap(std::string file_name);
 friend class BoardToGUI;
+friend class GameScreen;
+friend class GraphicalUI;
+Q_OBJECT
 
 public:
     typedef enum{ORDINARY, TREASURE, INITIAL, DECISION, TRANSPORT, NOTYPE} CellType;
     CellContainer(CellType cellType, QWidget *parent = nullptr);
+    unsigned long long int getCellID();
+    bool isHighlighted();
     
 private:
     typedef enum{GREEN, ORANGE, BLUE, RED, VIOLET} CellColor;
@@ -31,11 +36,19 @@ private:
     BoardCell *content;
     CellType cellType;
     CellColor cellColor;
+    unsigned long long int cellID;
+    bool isCellHighlighted;
     
     void setColor();
     void loadImage();
     void highlight();
     void normalize();
+    
+protected:
+     void mousePressEvent(QMouseEvent *event) override;
+     
+signals:
+     void clicked();
 };
 
 #endif // CELLCONTAINER_H

@@ -123,3 +123,8 @@ void GameStatistics::resetPlayer(Player *player)
 {
 	this -> ownerGame -> gameUI -> declareReset(player -> getPlayerName());
 }
+
+const std::vector<Player *> &GameStatistics::getAllPlayers()
+{
+    return this -> players;
+}

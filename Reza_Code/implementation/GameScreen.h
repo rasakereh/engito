@@ -17,6 +17,7 @@ class GameScreen : public QMainWindow
 {   
     //Q_OBJECT
     friend class BoardToGUI;
+    friend class GraphicalUI;
 public:
     
     explicit GameScreen(QWidget *parent = 0);
@@ -38,7 +39,10 @@ private:
     QWidget *popupWindow;
     bool randomForEver;
     bool customForEver;
+    std::vector<QMetaObject::Connection> connectionList;
+    GraphicalUI *gameUI;
     
+    void emptyConnections();
     void showPopupMessage(QString, int);
 };
 

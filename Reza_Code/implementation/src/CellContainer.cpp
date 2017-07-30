@@ -19,6 +19,7 @@ CellContainer::CellContainer(CellContainer::CellType cellType, QWidget *parent):
 {
     int width = WIDTHCELL;
     int height = HEIGHTCELL;
+    this -> isCellHighlighted = false;
     this -> setFixedSize(width, height);
     this -> setScaledContents(true);
     this -> cellType = cellType;
@@ -39,4 +40,19 @@ void CellContainer::setColor()
 void CellContainer::highlight()
 {
     this -> setPixmap(QPixmap(":/icons/Cells/highlight"));
+}
+
+unsigned long long int CellContainer::getCellID()
+{
+    return this -> cellID;
+}
+
+bool CellContainer::isHighlighted()
+{
+    return this -> isCellHighlighted;
+}
+
+void CellContainer::mousePressEvent(QMouseEvent *event) override
+{
+    emit this -> clicked();
 }
